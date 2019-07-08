@@ -1,0 +1,2 @@
+class MicrowavesController < ApplicationController
+end
