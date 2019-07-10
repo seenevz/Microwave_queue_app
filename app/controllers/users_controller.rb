@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
-      log_in(@user.id)
+      log_in(@user)
       redirect_to @user
     else
       render signup_path
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.valid?
       redirect_to @user
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render edit_user_path
     end
   end

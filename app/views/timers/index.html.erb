@@ -1,0 +1,22 @@
+<h1>The Queue</h1>
+<div>
+    <% if logged_in? %>
+      <%= form_for @timer do |f| %>
+        <%= f.label :duration %>
+        <%= f.time_field :duration, min: '00:01', max: '00:60' %>
+
+    <%= f.submit "Queue it!" %>
+      <% end %>
+    <% end %>
+</div>
+<div>
+    <% if @timers.length > 0 %>
+    <ul>
+        <% @timers.map do |timer| %>
+            <li><%= timer.user.username %> for <%= timer.duration %> </li>
+        <% end %>
+    </ul>
+    <% else %>
+      No one is waiting! Woohoo!
+    <% end %>
+</div>
