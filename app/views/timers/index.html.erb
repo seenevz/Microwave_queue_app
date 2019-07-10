@@ -2,8 +2,8 @@
 <div>
     <% if logged_in? %>
       <%= form_for @timer do |f| %>
-        <%= f.label :duration %>
-        <%= f.time_field :duration, min: '00:01', max: '00:60' %>
+        <%= f.label :duration, "Time in mins" %>
+        <%= f.number_field :duration, in: 1..10 %>
 
     <%= f.submit "Queue it!" %>
       <% end %>
@@ -13,7 +13,7 @@
     <% if @timers.length > 0 %>
     <ul>
         <% @timers.map do |timer| %>
-            <li><%= timer.user.username %> for <%= timer.duration %> </li>
+            <li><%= timer.user.username %> for <%= timer.duration %> mins! <%= button_to "I'm done", timer , method: :delete %></li>
         <% end %>
     </ul>
     <% else %>

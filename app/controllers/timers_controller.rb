@@ -16,9 +16,15 @@ class TimersController < ApplicationController
     end
   end
 
+  def destroy
+    @timer = Timer.find(params[:id])
+    @timer.destroy
+    redirect_to timers_path
+  end
+
   private
 
   def timer_params
-    params.require(:timer).permit(:duration)
+    params.require(:timer).permit(:id, :duration)
   end
 end

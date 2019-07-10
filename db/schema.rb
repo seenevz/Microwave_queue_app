@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_164313) do
   end
 
   create_table "timers", force: :cascade do |t|
-    t.time "duration"
+    t.string "duration"
     t.integer "user_id"
     t.integer "microwave_id"
     t.datetime "created_at", null: false
