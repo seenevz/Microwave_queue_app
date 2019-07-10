@@ -3,9 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:username])
-    return head(:forbidden) unless @user.authenticate(params[:password])
-        session[:user_id] = @user.id
+    @user = User.find_by(username: params[:session][:username])
+    byebug
+    if @user && @user.authenticate(params[:session][:password])
+      byebug
+      session[:user_id] = @user.id
+      redirect_to @user
+    else
+      flash.now[:danger] = "Invalid username/password combination"
+      render "new"
     end
   end
 
