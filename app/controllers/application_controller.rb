@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?, :authorized?
+  helper_method :current_user, :log_in, :logged_in?, :authorized?
 
   def current_user
     if session[:user_id]
@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
   def logged_in?
-    !!current_user
+    !!current_user.id
   end
 
   def authorized?

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_params, except: [:new, :show]
+  before_action :user_params, only: [:create, :update]
 
   def show
     @user = current_user
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
-      session[:user_id] = @user.id
+      log_in(@user.id)
       redirect_to @user
     else
       render signup_path

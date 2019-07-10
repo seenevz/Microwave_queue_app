@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :lines
-  has_many :microwaves, through: :lines
+  has_many :timers
+  has_many :microwaves, through: :timers
 
   has_secure_password
 end

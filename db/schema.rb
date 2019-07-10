@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_07_09_164313) do
 
-  create_table "lines", force: :cascade do |t|
-    t.integer "User_id"
-    t.integer "Microwave_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["Microwave_id"], name: "index_lines_on_Microwave_id"
-    t.index ["User_id"], name: "index_lines_on_User_id"
-  end
-
   create_table "microwaves", force: :cascade do |t|
     t.string "human_identifier"
     t.string "status"
@@ -29,14 +20,13 @@ ActiveRecord::Schema.define(version: 2019_07_09_164313) do
   end
 
   create_table "timers", force: :cascade do |t|
-    t.time "start"
-    t.time "end"
-    t.integer "line_id"
+    t.time "duration"
+    t.integer "user_id"
     t.integer "microwave_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["line_id"], name: "index_timers_on_line_id"
     t.index ["microwave_id"], name: "index_timers_on_microwave_id"
+    t.index ["user_id"], name: "index_timers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
