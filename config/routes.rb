@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :lines
-  resources :microwaves
+  root "timers#index"
   resources :users
+  resources :timers
 
+  get "/queue", to: "timers#index"
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
