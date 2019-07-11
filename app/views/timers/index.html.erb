@@ -1,20 +1,20 @@
 <h1>The Queue</h1>
 <div>
     <% if logged_in? %>
-      <%= form_for @timer do |f| %>
+      <%= form_for @timer, remote: :true do |f| %>
         <%= f.label :duration, "Time in mins" %>
         <%= f.number_field :duration, in: 1..10 %>
 
-    <%= f.submit "Queue it!" %>
+    <%= f.submit "Queue it!"%>
       <% end %>
     <% end %>
 </div>
 <div>
     <% if @timers.length > 0 %>
     <ul>
-        <% @timers.map do |timer| %>
-            <li><%= timer.user.username %> for <%= timer.duration %> mins! <%= button_to "I'm done", timer , method: :delete %></li>
-        <% end %>
+        <% #@timers.map do |timer| %>
+
+        <% #end %>
     </ul>
     <% else %>
       No one is waiting! Woohoo!

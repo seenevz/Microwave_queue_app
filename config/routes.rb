@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/websocket"
+
   root "timers#index"
   resources :users
   resources :timers
