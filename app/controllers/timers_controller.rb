@@ -14,6 +14,7 @@ class TimersController < ApplicationController
     @timer = current_user.timers.build(duration: timer_params[:duration], microwave: @microwave)
     if @timer.valid?
       @timer.save
+      # MicrowaveTimerOneJob.perform_later(timer_params[:duration])
       timers = Timer.all.map { |timer| { username: timer.user.username, timer: timer } }
       ActionCable.server.broadcast("timers_channel", timers)
       # redirect_to timers_path
